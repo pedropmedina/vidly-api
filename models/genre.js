@@ -26,4 +26,4 @@ const validateGenre = genre => {
 	return Joi.validate(genre, schema);
 };
 
-module.exports = { Genre, validateGenre };
+module.exports = { Genre, genreSchema, validateGenre };
