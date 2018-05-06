@@ -63,4 +63,4 @@ router.delete('/:id', async (req, res) => {
 	res.send(genre);
 });
 
-module.exports = { router };
+module.exports = router;
