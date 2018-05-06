@@ -9,6 +9,17 @@ router.get('/', async (req, res) => {
 	res.send(customers);
 });
 
+// get customer by id
+router.get('/:id', async (req, res) => {
+	const customer = await Customer.findById(req.params.id);
+
+	if (!customer) {
+		return res.status(404).send('Customer with given ID no found.');
+	}
+
+	res.send(customer);
+});
+
 // post customers
 router.post('/', async (req, res) => {
 	const { error } = validateCustomer(req.body);
@@ -48,7 +59,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // delete customer
-router.get('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	const customer = await Customer.findByIdAndRemove(req.params.id);
 
 	if (!customer) {
