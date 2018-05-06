@@ -3,11 +3,13 @@ const router = express.Router();
 const { mongoose } = require('../db/mongoose');
 const { Genre, validateGenre } = require('../models/genre');
 
+// get genres
 router.get('/', async (req, res) => {
 	const genres = await Genre.find().sort('name');
 	res.send(genres);
 });
 
+// get genre by id
 router.get('/:id', async (req, res) => {
 	const genre = await Genre.findById(req.params.id);
 
@@ -18,6 +20,7 @@ router.get('/:id', async (req, res) => {
 	res.send(genre);
 });
 
+// post genre
 router.post('/', async (req, res) => {
 	const { error } = validateGenre(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -31,6 +34,7 @@ router.post('/', async (req, res) => {
 	res.send(genre);
 });
 
+// put genere
 router.put('/:id', async (req, res) => {
 	const { error } = validateGenre(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -48,6 +52,7 @@ router.put('/:id', async (req, res) => {
 	res.send(genre);
 });
 
+// delete genre
 router.delete('/:id', async (req, res) => {
 	const genre = await Genre.findByIdAndRemove(req.params.id);
 
@@ -57,3 +62,5 @@ router.delete('/:id', async (req, res) => {
 
 	res.send(genre);
 });
+
+module.exports = { router };
