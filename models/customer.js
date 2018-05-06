@@ -38,6 +38,7 @@ const validateCustomer = customer => {
 			.required(),
 		isGold: Joi.boolean(),
 	};
+	return Joi.validate(customer, schema);
 };
 
 module.exports = { Customer, validateCustomer };
