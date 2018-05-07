@@ -4,6 +4,13 @@ const _ = require('lodash');
 const bcrypt = require('bcrypt');
 const { mongoose } = require('../db/mongoose');
 const { User, validateUser } = require('../models/user');
+const auth = require('../middleware/auth');
+
+// get user
+router.get('/me', auth, async (req, res) => {
+	const user = await User.findById(req.user._id).select('-password');
+	res.send(user);
+});
 
 // post users
 router.post('/', async (req, res) => {
