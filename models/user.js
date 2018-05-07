@@ -24,12 +24,13 @@ const userSchema = new Schema({
 		minlength: 5,
 		maxlength: 1024,
 	},
+	isAdmin: Boolean,
 });
 
 userSchema.methods.generateAuthToken = function() {
 	const user = this;
 
-	const token = jwt.sign({ _id: user._id }, 'secret');
+	const token = jwt.sign({ _id: user._id, isAdmin: user.isAdmin }, 'secret');
 	return token;
 };
 
