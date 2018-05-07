@@ -40,7 +40,7 @@ const validateMovie = movie => {
 			.min(5)
 			.max(255)
 			.required(),
-		genreId: Joi.string().required(),
+		genreId: Joi.objectId().required(),
 		numberInStock: Joi.number()
 			.min(0)
 			.max(255)

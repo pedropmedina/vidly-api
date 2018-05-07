@@ -6,6 +6,12 @@ const { mongoose } = require('../db/mongoose');
 // express
 const express = require('express');
 
+// joi
+const Joi = require('joi');
+
+// objectId validation for joi
+Joi.objectId = require('joi-objectid')(Joi);
+
 // routes
 const customers = require('../routes/customers');
 const genres = require('../routes/genres');
